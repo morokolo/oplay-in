@@ -1,0 +1,23 @@
+<div class="login-wrap">
+  <h1 class="large">Please Sign In here</h1>
+  <form class="form-signin"  role="form" name="login.loginForm" ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)" novalidate>
+    <div class="alert alert-danger" ng-if="login.error" role="alert">
+      <p>{{login.error}}</p>
+    </div>
+    <fieldset>
+     <div class="form-group">
+        <input type="text"  class="form-control" ng-model="login.user.username" name="username" placeholder="Enter Email" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password"  class="form-control" ng-model="login.user.password" placeholder="Enter Password" required>
+      </div>
+
+      <button type="submit" class="btn btn-info btn-sm pull-right" ng-disabled="login.loading">
+        <span class="glyphicon glyphicon-ok"></span>
+          Sign In
+        <span ng-show="login.loading" class="glyphicon glyphicon-refresh"></span>
+      </button>
+    </fieldset>
+  </form>
+</div>
