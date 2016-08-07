@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="tangent">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Tangent Solutions Assesment</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/tangent.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+  </head>
+    <body ng-controller="LoginCtrl as main" ng-class="{loading:loadingView}" class="bg-orange">
+        <div class="container">
+          <div ui-view class="content"></div>
+        </div>
+
+
+    <!-- scripts here -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+     <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+    <script src="vendor/angular-ui-router.min.js"></script>
+
+    <script src="app/tangent.js"></script>
+    <script src="app/common/common.js"></script>
+    <script src="app/common/models/user-model.js"></script>
+    <script src="app/common/services/auth-service.js"></script>
+    <script src="app/login/login-controller.js"></script>
+
+  </body>
+</html>
