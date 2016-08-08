@@ -1,0 +1,78 @@
+<div class="col-sm-8 project-details ">
+  <div class="projects">
+  <h3>Our Current Projects</h3>
+    <simple-project class="simple-project" ng-repeat="(projectId, project) in ctrl.projects" ng-click="ctrl.setEditedProject(projecctId, project)" 
+    ng-class="{ 'active': ctrl.isCurrentProject(projectId) }">
+      </simple-project>
+  </div>
+</div>
+
+<div class="col-sm-4">
+  <!-- CREATING PROJECTS-->
+  <div ng-if="!ctrl.isEditing" class="col-xs-12 project-details">
+    <h3>Create a New Projects</h3>
+    <form name="ctrl.createForm" class="create-form" role="form" ng-submit="ctrl.createProject(ctrl.newProject, ctrl.createForm.$valid)" novalidate>
+      <div class="form-group">
+        <label>Project Title</label>
+        <input type="text" class="form-control" ng-model="ctrl.newProject.title" placeholder="Project Title" required>
+      </div>
+
+      <div class="form-group">
+        <label>Project  Description</label>
+        <input  type="text" class="form-control"  ng-model="ctrl.newProject.description" placeholder="Project Description" required>
+      </div>
+      
+      <div class="form-group"> 
+        <label>Project Date</label>
+        <input type="text" class="form-control" ng-model="ctrl.newProject.start_date" placeholder="Project Date" value="2016-01-01" required>
+      </div>
+
+       <div class="form-group">
+        <label>Project End Date</label>
+        <input type="text" class="form-control" ng-model="ctrl.newProject.end_date" placeholder="Project End Date" value="2016-01-01" required>
+      </div>
+
+      <button type="submit" class="btn btn-info btn-lg" ng-disabled="ctrl.loading"> 
+          Create
+        <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
+      </button>
+    </form>
+  </div>
+
+  <!-- EDITING EXISTING PROJECTS -->
+  <div ng-if="ctrl.isEditing" class="col-xs-12 project-details">
+    <h3>Editing {{ ctrl.editedProject.title }}</h3>
+
+    <form name="ctrl.updateForm" class="edit-form" role="form" ng-submit="ctrl.updateProject(ctrl.editedProject.pk, ctrl.editedProject, ctrl.updateForm.$valid)" novalidate>
+      
+      <div class="form-group">
+        <label>Project Title</label>
+        <input  type="text" class="form-control" ng-model="ctrl.editedProject.title" placeholder="Project Title" required>
+      </div>
+
+      <div class="form-group">
+        <label>Project Description</label>
+        <input  type="text" class="form-control" ng-model="ctrl.editedProject.description" placeholder="Project Description" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Project Date</label>
+        <input type="text"  class="form-control" ng-model="ctrl.editedProject.start_date" placeholder="Project Date" value="2016-01-01" required>
+      </div>
+
+      <div class="form-group">
+       <label>Project End Date</label>
+        <input type="text"  class="form-control" ng-model="ctrl.editedProject.end_date"  placeholder="Project End Date" value="2016-01-01" required>
+      </div>
+
+      <button type="submit" class="btn btn-info btn-lg" ng-disabled="ctrl.loading">
+        Save
+        <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
+      </button>
+
+      <button type="button" class="btn btn-default btn-lg pull-right" ng-click="ctrl.cancelEditing()">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

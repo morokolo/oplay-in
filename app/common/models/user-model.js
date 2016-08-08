@@ -1,7 +1,7 @@
   'use strict';
 
   angular.module('tangent.common')
-  .service('UserModel', function ($http,$rootScope) {
+  .service('UserModel', function ($http,$rootScope,$cookies) {
     var service = this,
     currentUser = null;
 
@@ -17,7 +17,8 @@
       console.log(user);
       return $http.post('http://userservice.staging.tangentmicroservices.com:80/api-token-auth/', { username: user.username, password: user.password })
       .success(function (response) {
-                 $http.defaults.headers.common['Authorization'] = response.token; // neeed to set cookies for page refreeshes
+                 $cookies.put('token',response.token);
+                
                })
       .error(function (error) {
         currentUser = null;

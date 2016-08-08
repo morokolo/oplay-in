@@ -3,7 +3,8 @@
 angular.module('tangent', [
   'ui.router',
   'ngAnimate',
-  'tangent.common'
+  'tangent.common',
+  'ngCookies'
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/login');
@@ -22,12 +23,22 @@ angular.module('tangent', [
         controllerAs: 'ctrl'
       });
   })
-  .run(function ($rootScope, $state) {
-    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-      event.preventDefault();
-      if (error === 'AUTH_REQUIRED') {
-        $state.go('login');
-      }
-    });
-  })
+
+
+
+  .run(['$rootScope', '$location', '$cookies', '$http',
+    function ($rootScope, $location, $cookies, $http) {
+        // keep user logged in after page refresh
+     	
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            var token = $cookies.get('token');
+     		console.log(token);
+            if ($location.path() !== '/login' && token === undefined || token ==null) {
+                $location.path('/login');
+            }else{
+            	 $location.path('/projects');
+            }
+        });
+    }])
 ;
